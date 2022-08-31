@@ -1,0 +1,12 @@
+.banner {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.banner-img {
+    min-width: 111%;
+    max-width: none;
+}
