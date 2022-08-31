@@ -1,6 +1,8 @@
 .banner {
+    position: relative;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -9,4 +11,40 @@
 .banner-img {
     min-width: 111%;
     max-width: none;
+    width: 100%;
+}
+
+.banner-search {
+    /* border: 1px solid black; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    display: flex;
+}
+
+.banner-search input {
+    border: none;
+    border-radius: 16px;
+    padding: 12px 15px;
+    width: 100%;
+    transform: translate(15px);
+}
+
+.banner-search button {
+    border: none;
+    border-radius: 20px;
+    padding: 12px 30px;
+    background-color: tomato;
+    color: white;
+    transform: translate(-15px);
+    cursor: pointer;
+}
+
+.banner h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -110px);
 }
