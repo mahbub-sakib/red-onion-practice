@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Register.css';
@@ -7,6 +7,8 @@ import auth from '../../../firebase.init';
 
 const Register = () => {
     const navigate = useNavigate();
+    // let passMisMatch = 0;
+    const [passMisMatched, setPassMisMatch] = useState(true);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -29,11 +31,19 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
-        // console.log(name, email, password, confirmPassword);
-        await createUserWithEmailAndPassword(email, password);
 
-        console.log('Updated profile');
-        navigate('/home');
+        if (password != confirmPassword) {
+            setPassMisMatch(false);
+        }
+        else {
+            // console.log(name, email, password, confirmPassword);
+
+            await createUserWithEmailAndPassword(email, password);
+
+            console.log('Updated profile', passMisMatched);
+            navigate('/home');
+        }
+
     }
 
     return (
@@ -47,7 +57,7 @@ const Register = () => {
                 <input type="password" name="password" placeholder='Password' id="" required />
                 <input type="password" name="confirmPassword" placeholder='Confirm Password' id="" required />
 
-
+                {passMisMatched == false && <p className='text-danger'>Messages: Two password didn't match</p>}
 
                 <input className='w-50 mx-auto btn btn-primary mt-2' type="submit" value="Register" />
             </form>
